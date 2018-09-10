@@ -46,22 +46,22 @@ export default {
       ],
       data6: [
         {
-          id: 'John Brown',
+          id: 1,
           articleTitle: 18,
           createtime: 'New York No. 1 Lake Park'
         },
         {
-          id: 'Jim Green',
+          id: 2,
           articleTitle: 24,
           createtime: 'London No. 1 Lake Park'
         },
         {
-          id: 'Joe Black',
+          id: 3,
           articleTitle: 30,
           createtime: 'Sydney No. 1 Lake Park'
         },
         {
-          id: 'Jon Snow',
+          id: 4,
           articleTitle: 26,
           createtime: 'Ottawa No. 2 Lake Park'
         }
@@ -69,11 +69,8 @@ export default {
     }
   },
   methods: {
-    show (index) {
-      this.$Modal.info({
-        title: 'User Info',
-        content: `Name：${this.data6[index].name}<br>Age：${this.data6[index].age}<br>Address：${this.data6[index].address}`
-      })
+    show (params) {
+      this.$router.push({name: 'article_edit', params: { id: params.row.id }})
     },
     remove (index) {
       this.data6.splice(index, 1)

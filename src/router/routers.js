@@ -29,11 +29,34 @@ export default [
     meta: {
       hideInMenu: false,
       notCache: true,
-      title: '首页',
+      title: 'welcome',
     },
     children: [
       {
         path: '/home',
+        name: 'home',
+        meta: {
+          hideInMenu: false,
+          title: 'welcome',
+          notCache: true,
+          icon: '_qq'
+        },
+        component: () => import('@/view/home/home')
+      }
+    ]
+  },
+  {
+    path: '/article',
+    name: 'article',
+    component: Main,
+    meta: {
+      hideInMenu: false,
+      notCache: true,
+      title: '首页',
+    },
+    children: [
+      {
+        path: '/articleList',
         name: 'article_list',
         meta: {
           hideInMenu: false,
@@ -42,6 +65,17 @@ export default [
           icon: '_qq'
         },
         component: () => import('@/view/article-list/articleList')
+      },
+      {
+        path: '/articleEdit/:id?',
+        name: 'article_edit',
+        meta: {
+          hideInMenu: true,
+          title: '文章编辑',
+          notCache: true,
+          icon: '_qq'
+        },
+        component: () => import('@/view/article-list/articleEdit')
       }
     ]
   },
