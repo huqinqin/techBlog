@@ -80,9 +80,9 @@ export default {
     }
   },
   methods: {
-    show (params) {
+    /* show (params) {
       this.$router.push({name: 'article_edit', params: { id: params.row.id }})
-    },
+    }, */
     remove (index) {
       this.data6.splice(index, 1)
     },
