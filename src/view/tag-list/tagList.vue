@@ -11,6 +11,7 @@
         v-model="newTagList"
         title="新增标签"
         :loading="loading"
+        @on-cancel="cancle"
         @on-ok="asyncOK">
         <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
           <FormItem label="标签名称" prop="tagsName">
@@ -58,19 +59,20 @@ export default {
         if (valid) {
           this.loading = false
           this.newTagList = false
-          this.$Message.success('Success!')
         } else {
           this.loading = true
           setTimeout(() => {
             this.loading = false
-            this.newTagList = true
           }, 1000)
-          this.$Message.error('Fail!')
         }
       })
     },
     newTag () {
+      this.$refs.formValidate.resetFields()
       this.newTagList = true
+    },
+    cancle () {
+      this.$refs.formValidate.resetFields()
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="categoryList">
-        <h3 class="categoryTitle">文章列表：</h3>
+        <h3 class="categoryTitle">类目列表：</h3>
       <div>
         <i-button type="primary" class="newCate" @click="newCateBtn">新增类目</i-button>
       </div>
@@ -96,13 +96,13 @@ export default {
           this.loading = true
           setTimeout(() => {
             this.loading = false
-            this.newCategory = true
           }, 1000)
           this.$Message.error('Fail!')
         }
       })
     },
     newCateBtn () {
+      this.$refs.formValidate.resetFields()
       this.newCategory = true
     }
   }
