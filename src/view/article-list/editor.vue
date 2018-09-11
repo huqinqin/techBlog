@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     handleChange (html, text) {
-      console.log(html, text)
+      this.$emit('editArticle', html)
     },
     changeContent () {
       this.$refs.editor.setHtml('<p>powered by wangeditor</p>')

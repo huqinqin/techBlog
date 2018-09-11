@@ -6,16 +6,14 @@
           <Input v-model="formValidate.name" placeholder="Enter your article title"></Input>
         </FormItem>
         <FormItem label="文章内容" prop="content">
-          <editor></editor>
+          <editor @editArticle = 'editArticle'></editor>
         </FormItem>
-        <FormItem label="City" prop="city">
-          <Select v-model="formValidate.city" placeholder="Select your city">
-            <Option value="beijing">New York</Option>
-            <Option value="shanghai">London</Option>
-            <Option value="shenzhen">Sydney</Option>
+        <FormItem label="所属类目" prop="category">
+          <Select v-model="formValidate.category" placeholder="Select your category">
+            <Option  v-for="(item, index) in formValidate.categoryList" :key="index" :value="item.value">{{item.label}}</Option>
           </Select>
         </FormItem>
-        <FormItem label="Date">
+        <FormItem label="创建时间">
           <Row>
             <Col span="11">
               <FormItem prop="date">
@@ -30,22 +28,8 @@
             </Col>
           </Row>
         </FormItem>
-        <FormItem label="Gender" prop="gender">
-          <RadioGroup v-model="formValidate.gender">
-            <Radio label="male">Male</Radio>
-            <Radio label="female">Female</Radio>
-          </RadioGroup>
-        </FormItem>
-        <FormItem label="Hobby" prop="interest">
-          <CheckboxGroup v-model="formValidate.interest">
-            <Checkbox label="Eat"></Checkbox>
-            <Checkbox label="Sleep"></Checkbox>
-            <Checkbox label="Run"></Checkbox>
-            <Checkbox label="Movie"></Checkbox>
-          </CheckboxGroup>
-        </FormItem>
-        <FormItem label="Desc" prop="desc">
-          <Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
+        <FormItem label="文章作者" prop="desc">
+          <Input v-model="formValidate.desc"  placeholder="Enter something..."></Input>
         </FormItem>
         <FormItem>
           <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
@@ -64,12 +48,20 @@ export default {
       formValidate: {
         name: '',
         content: '',
-        city: '',
-        gender: '',
-        interest: [],
+        category: '',
         date: '',
         time: '',
-        desc: ''
+        desc: '',
+        categoryList: [{
+          label: '生活',
+          value: '1'
+        }, {
+          label: 'web前端技术',
+          value: '2'
+        }, {
+          label: 'php技术',
+          value: '3'
+        }]
       },
       ruleValidate: {
         name: [
@@ -78,15 +70,8 @@ export default {
         content: [
           {required: true, message: 'Mailbox cannot be empty', trigger: 'blur'}
         ],
-        city: [
-          {required: true, message: 'Please select the city', trigger: 'change'}
-        ],
-        gender: [
-          {required: true, message: 'Please select gender', trigger: 'change'}
-        ],
-        interest: [
-          {required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change'},
-          {type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change'}
+        category: [
+          {required: true, message: 'Please select the category', trigger: 'change'}
         ],
         date: [
           {required: true, type: 'date', message: 'Please select the date', trigger: 'change'}
@@ -95,8 +80,7 @@ export default {
           {required: true, type: 'string', message: 'Please select time', trigger: 'change'}
         ],
         desc: [
-          {required: true, message: 'Please enter a personal introduction', trigger: 'blur'},
-          {type: 'string', min: 20, message: 'Introduce no less than 20 words', trigger: 'blur'}
+          {required: true, message: 'Please enter a personal introduction', trigger: 'blur'}
         ]
       }
     }
@@ -113,6 +97,10 @@ export default {
     },
     handleReset (name) {
       this.$refs[name].resetFields()
+    },
+    editArticle (txt) {
+      this.formValidate.content = txt
+      console.log(this.formValidate.content)
     }
   },
   components: {

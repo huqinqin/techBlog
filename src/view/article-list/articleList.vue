@@ -22,7 +22,8 @@ export default {
         },
         {
           title: '发表时间',
-          key: 'createtime'
+          key: 'createtime',
+          width: 200
         },
         {
           title: '操作',
