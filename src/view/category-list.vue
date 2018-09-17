@@ -105,6 +105,8 @@ export default {
       this.$refs.formValidate.resetFields()
       this.newCategory = true
     }
+  },
+  mounted () {
   }
 }
 </script>

@@ -11,11 +11,14 @@ import importDirective from '@/directive'
 import 'iview/dist/styles/iview.css'
 import './index.less'
 import '@/assets/icons/iconfont.css'
+import {plugin1, Plugin2} from '@/plugin'
 // import '@/mock'
 // 实际打包时应该不引入mock
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock')
 
+Vue.use(plugin1)
+Vue.use(Plugin2)
 Vue.use(iView, {
   i18n: (key, value) => i18n.t(key, value)
 })

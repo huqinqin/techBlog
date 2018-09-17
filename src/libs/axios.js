@@ -1,5 +1,6 @@
 import axios from 'axios'
 // import { Spin } from 'iview'
+// axios.defaults.baseURL = '/work'
 class HttpRequest {
   constructor (baseUrl = baseURL) {
     this.baseUrl = baseUrl

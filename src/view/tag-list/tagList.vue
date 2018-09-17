@@ -74,6 +74,8 @@ export default {
     cancle () {
       this.$refs.formValidate.resetFields()
     }
+  },
+  mounted () {
   }
 }
 </script>
